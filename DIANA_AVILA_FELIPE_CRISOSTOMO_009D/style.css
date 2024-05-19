@@ -1,0 +1,27 @@
+.carousel-item img {
+    max-height: 400px; 
+    width: 100%; 
+    margin: auto;
+}
+
+#carouselExampleControls {
+    max-width: 100%; 
+    height: auto;
+    margin: 0 auto; 
+}
+
+.card2{
+    width: 18rem; 
+    margin-top: 100px;
+    margin-bottom: 40px;
+}
+
+.dropdown-menu-large{
+    width: 300px;
+}
+
+.cartita{
+    width: 1500px;
+ }
+
+ 
