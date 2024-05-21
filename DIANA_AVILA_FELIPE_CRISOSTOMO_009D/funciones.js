@@ -38,3 +38,4 @@ $(document).ready(function() {
     // Initial sort
     $('#sortOrder').trigger('change');
 });
+
