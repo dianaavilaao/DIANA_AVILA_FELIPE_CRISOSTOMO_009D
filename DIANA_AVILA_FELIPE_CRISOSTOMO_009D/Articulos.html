@@ -40,20 +40,14 @@
                     <button class="btn btn-success position-relative me-2" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         Carrito
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger numero-obj">
-                            3
+                         0   
                         </span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-large" aria-labelledby="dropdownMenuButton">
                         <li>
                             <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <a href="#"><img src="img/articulos/art1_pajaritoregador.webp" alt="" class="img-fluid"></a>
-                                    </div>
-                                    <div class="col-8 text-start">
-                                        <p class="lead mb-0">Pajarito Regador</p>
-                                        <p class="lead"><b>$75.990</b></p>
-                                    </div>
+                                <div class="row align-items-center" id="cartItems">
+                                    <!-- Los items del carrito se agregarán aquí -->
                                 </div>
                             </div>
                         </li>
@@ -101,7 +95,7 @@
     <div class="container my-4">
         <div class="row g-4" id="productContainer">
             <div class="col-md-3">
-                <div class="card">
+                <div class="card product-card" data-name="Pajarito Regador" data-price="75990" data-img="img/articulos/art1_pajaritoregador.webp">
                     <img src="img/articulos/art1_pajaritoregador.webp" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Pajarito Regador</h5>
@@ -115,7 +109,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card">
+                <div class="card product-card" data-name="Gotero" data-price="279990" data-img="img/articulos/art2_gotero.webp">
                     <img src="img/articulos/art2_gotero.webp" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Gotero</h5>
@@ -129,7 +123,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card">
+                <div class="card product-card" data-name="Regador" data-price="89990" data-img="img/articulos/art3_regador.webp">
                     <img src="img/articulos/art3_regador.webp" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Regador</h5>
@@ -143,7 +137,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card">
+                <div class="card product-card" data-name="Fertilizante" data-price="2000990" data-img="img/articulos/art4_fertilizante.webp">
                     <img src="img/articulos/art4_fertilizante.webp" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Fertilizante</h5>
@@ -157,7 +151,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card">
+                <div class="card product-card" data-name="Tutor" data-price="89990" data-img="img/articulos/art5_tutor.webp">
                     <img src="img/articulos/art5_tutor.webp" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Tutor</h5>
@@ -171,7 +165,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card">
+                <div class="card product-card" data-name="Kit De Herramientas" data-price="89990" data-img="img/articulos/art6_kitherramientas.webp">
                     <img src="img/articulos/art6_kitherramientas.webp" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Kit De Herramientas</h5>
@@ -185,7 +179,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card">
+                <div class="card product-card" data-name="Estante" data-price="89990" data-img="img/articulos/art7_estante.webp">
                     <img src="img/articulos/art7_estante.webp" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Estante</h5>
@@ -199,7 +193,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card">
+                <div class="card product-card" data-name='Libro "Cómo NO MATAR tus plantas"' data-price="89990" data-img="img/articulos/art8_libro.jpg">
                     <img src="img/articulos/art8_libro.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Libro "Cómo NO MATAR tus plantas" </h5>
