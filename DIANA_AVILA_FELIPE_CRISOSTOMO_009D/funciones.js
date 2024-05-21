@@ -37,9 +37,8 @@ $(document).ready(function() {
 
     // Initial sort
     $('#sortOrder').trigger('change');
-});
 
-document.addEventListener("DOMContentLoaded", function() {
+    // Product card hover and click functionality
     const productCards = document.querySelectorAll('.product-card');
     const cartItemsContainer = document.getElementById('cartItems');
     const itemCountElement = document.querySelector('.numero-obj');
@@ -147,5 +146,47 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         updateCartTotal();
+    }
+
+    // Load items on the cart page
+    if (document.body.classList.contains('cart-page')) {
+        loadCartItemsOnCartPage();
+    }
+
+    function loadCartItemsOnCartPage() {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const cartTableBody = document.querySelector('.cart-table tbody');
+
+        cartItems.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <th scope="row">
+                    <div class="d-flex align-items-center">
+                        <img src="${item.img}" class="img-fluid rounded-3" style="width: 120px;">
+                        <div class="flex-column ms-4">
+                            <p class="mb-2">${item.name}</p>
+                        </div>
+                    </div>
+                </th>
+                <td class="align-middle">
+                    <p class="mb-0 text-center" style="font-weight: 500;">1</p>
+                </td>
+                <td class="align-middle">
+                    <p class="mb-0" style="font-weight: 500;">$${item.price}</p>
+                </td>
+            `;
+            cartTableBody.appendChild(row);
+        });
+
+        updateCartPageTotal();
+    }
+
+    function updateCartPageTotal() {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        let total = 0;
+        cartItems.forEach(item => {
+            total += parseFloat(item.price);
+        });
+        document.querySelector('.cart-page-total').innerText = `$${total}`;
     }
 });
