@@ -1,15 +1,15 @@
 $(document).ready(function() {
     var products = [];
 
-    // Capture products
+    // Capturar productos
     $('.card').each(function() {
-        var priceText = $(this).find('.precio').text().replace('.', '').replace(',', ''); // Clean up the price string
+        var priceText = $(this).find('.precio').text().replace('.', '').replace(',', ''); // Limpiar el texto del precio
         var price = parseFloat(priceText);
         var card = $(this).closest('.col-md-3');
         products.push({ price: price, card: card });
     });
 
-    // Function to update the product container
+    // Función para actualizar el contenedor de productos
     function updateProductContainer(sortedProducts) {
         $('#productContainer').empty();
         sortedProducts.forEach(function(product) {
@@ -17,10 +17,10 @@ $(document).ready(function() {
         });
     }
 
-    // Event listener for sort order change
+    // Evento para cambiar el orden de los productos
     $('#sortOrder').on('change', function() {
         var sortOrder = $(this).val();
-        var sortedProducts = products.slice(); // Create a copy of the products array
+        var sortedProducts = products.slice(); // Crear una copia del array de productos
 
         if (sortOrder === 'asc') {
             sortedProducts.sort(function(a, b) {
@@ -35,15 +35,15 @@ $(document).ready(function() {
         updateProductContainer(sortedProducts);
     });
 
-    // Initial sort
+    // Orden inicial
     $('#sortOrder').trigger('change');
 
-    // Product card hover and click functionality
+    // Funcionalidad del carrito
     const productCards = document.querySelectorAll('.product-card');
     const cartItemsContainer = document.getElementById('cartItems');
     const itemCountElement = document.querySelector('.numero-obj');
 
-    // Load cart items from localStorage
+    // Cargar elementos del carrito desde localStorage
     loadCartItems();
 
     productCards.forEach(card => {
@@ -99,6 +99,7 @@ $(document).ready(function() {
         return newItem;
     }
 
+
     function updateCartTotal() {
         const cartItems = document.querySelectorAll('#cartItems .row');
         let total = 0;
@@ -148,45 +149,109 @@ $(document).ready(function() {
         updateCartTotal();
     }
 
-    // Load items on the cart page
-    if (document.body.classList.contains('cart-page')) {
-        loadCartItemsOnCartPage();
-    }
+        //formulario
 
-    function loadCartItemsOnCartPage() {
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const cartTableBody = document.querySelector('.cart-table tbody');
-
-        cartItems.forEach(item => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <th scope="row">
-                    <div class="d-flex align-items-center">
-                        <img src="${item.img}" class="img-fluid rounded-3" style="width: 120px;">
-                        <div class="flex-column ms-4">
-                            <p class="mb-2">${item.name}</p>
-                        </div>
-                    </div>
-                </th>
-                <td class="align-middle">
-                    <p class="mb-0 text-center" style="font-weight: 500;">1</p>
-                </td>
-                <td class="align-middle">
-                    <p class="mb-0" style="font-weight: 500;">$${item.price}</p>
-                </td>
-            `;
-            cartTableBody.appendChild(row);
-        });
-
-        updateCartPageTotal();
-    }
-
-    function updateCartPageTotal() {
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        let total = 0;
-        cartItems.forEach(item => {
-            total += parseFloat(item.price);
-        });
-        document.querySelector('.cart-page-total').innerText = `$${total}`;
-    }
+        
+    // Validate Username 
+    $("#usercheck").hide(); 
+    let usernameError = true; 
+    $("#usernames").keyup(function () { 
+        validateUsername(); 
+    }); 
+  
+    function validateUsername() { 
+        let usernameValue = $("#usernames").val(); 
+        if (usernameValue.length == "") { 
+            $("#usercheck").show(); 
+            usernameError = false; 
+            return false; 
+        } else if (usernameValue.length < 3 || usernameValue.length > 10) { 
+            $("#usercheck").show(); 
+            $("#usercheck").html("**Largo del nombre de usuario debe ser de entre 3 y 10"); 
+            usernameError = false; 
+            return false; 
+        } else { 
+            $("#usercheck").hide(); 
+        } 
+    } 
+  
+    // Validate Email 
+    const email = document.getElementById("email"); 
+    email.addEventListener("blur", () => { 
+        let regex =  
+        /^([_\-\.0-9a-zA-Z]+)@([_\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/; 
+        let s = email.value; 
+        if (regex.test(s)) { 
+            email.classList.remove("is-invalid"); 
+            emailError = true; 
+        } else { 
+            email.classList.add("is-invalid"); 
+            emailError = false; 
+        } 
+    }); 
+  
+    // Validate Password 
+    $("#passcheck").hide(); 
+    let passwordError = true; 
+    $("#password").keyup(function () { 
+        validatePassword(); 
+    }); 
+    function validatePassword() { 
+        let passwordValue = $("#password").val(); 
+        if (passwordValue.length == "") { 
+            $("#passcheck").show(); 
+            passwordError = false; 
+            return false; 
+        } 
+        if (passwordValue.length < 3 || passwordValue.length > 10) { 
+            $("#passcheck").show(); 
+            $("#passcheck").html( 
+                "**Largo de la contraseña debe ser de entre 3 y 10"
+            ); 
+            $("#passcheck").css("color", "red"); 
+            passwordError = false; 
+            return false; 
+        } else { 
+            $("#passcheck").hide(); 
+        } 
+    } 
+  
+    // Validate Confirm Password 
+    $("#conpasscheck").hide(); 
+    let confirmPasswordError = true; 
+    $("#conpassword").keyup(function () { 
+        validateConfirmPassword(); 
+    }); 
+    function validateConfirmPassword() { 
+        let confirmPasswordValue = $("#conpassword").val(); 
+        let passwordValue = $("#password").val(); 
+        if (passwordValue != confirmPasswordValue) { 
+            $("#conpasscheck").show(); 
+            $("#conpasscheck").html("**Las contraseñas no coinciden"); 
+            $("#conpasscheck").css("color", "red"); 
+            confirmPasswordError = false; 
+            return false; 
+        } else { 
+            $("#conpasscheck").hide(); 
+        } 
+    } 
+  
+    // Submit button 
+    $("#submitbtn").click(function () { 
+        validateUsername(); 
+        validatePassword(); 
+        validateConfirmPassword(); 
+        validateEmail(); 
+        if ( 
+            usernameError == true && 
+            passwordError == true && 
+            confirmPasswordError == true && 
+            emailError == true
+        ) { 
+            return true; 
+        } else { 
+            return false; 
+        } 
+    }); 
+    
 });
